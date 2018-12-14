@@ -1,43 +1,38 @@
-let data;
-let c = 0;
-let button;
+var data;
+var r;
+var g;
+var b;
+
 
 function preload() {
-  data = loadJSON("simpleData_noRegions.json"); // there are objects with properties in this file
+  data = loadJSON ("simpleData_noRegions.json");
 }
 
 function setup() {
-  createCanvas(500,400);
-  // print(data.description);
-  // print(data.colors);
-  background(255);
+  noCanvas();
+  
+  var countries = data.countries;
+  for (var i=0; i< countries.length; i++) {
+    createElement ('h1',countries[i].estimate);
+    
+    //for (var i=0; i< countries.length; i++) {
+    //createElement ('h1',countries[i].country);
+    
+    //createP(countries);
+  }
 
-  button = createButton("New Country");
-  button.position(100, 300);
-  button.mousePressed(changeColor);
+
 }
 
 function draw() {
-  background(255);
+  background(100);
+  
+r = random(200);
+g = random (200);
+b = random (200);
 
-  fill(0)
-  textSize(20);
-  text(data.countries[c].country, 100, 100);
   
-  fill(100,200,100)
-  textSize(20)
-  text(data.countries[c].estimate, 100, 200);
-  
-  fill(150, 60,100)
-  textSize(20)
-  text(data.countries[c].marginOfError,100, 250);
-                                              // { } in json file means that these are properties of objects
-  
-  col = data.countries[c].country
-  fill(col);
-  rect(250,180,100,100);
+  fill (r,g,b,127);
+  text (data.countries,20,30);
 }
 
-function changeColor() {
-  c = int(random(0,100));
-}
